@@ -10,8 +10,10 @@ const app = express();
 
 // Connect to MongoDB
  mongoose.connect('mongodb://localhost/smartedu-db', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+   useNewUrlParser: true,
+   useUnifiedTopology: true,
+   useFindAndModify: false,
+   useCreateIndex: true,
 }).then(() => {
   console.log('MongoDB Connected')
 }).catch(err => console.log(err));
