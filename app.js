@@ -6,6 +6,7 @@ const courseRoute = require('./routes/courseRoute');
 
 const app = express();
 
+// Connect to MongoDB
  mongoose.connect('mongodb://localhost/smartedu-db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
