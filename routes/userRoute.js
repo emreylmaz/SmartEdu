@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route('/signup').post(authController.createUser); // Create a category
 router.route('/login').post(authController.loginUser); // Login a user
-
+router.route('/logout').get(authController.logoutUser); // Logout a user
 
 module.exports = router;
