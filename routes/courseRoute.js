@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require('express')
 const courseController = require('../controllers/courseController');
+const roleMiddleware = require('../middlewares/roleMiddleware');
 
 const router = express.Router();
 
-router.route('/').post(courseController.createCourse); // Create a course
-router.route('/').get(courseController.getAllCourse); // Get all courses
-router.route('/:slug').get(courseController.getCourse); // Get a course by id
-
+router.route('/').post(roleMiddleware(["teacher", "admin"]), courseController.createCourse); // http://localhost:3000/courses
+router.route('/').get(courseController.getAllCourse);
+router.route('/:slug').get(courseController.getCourse);
 
 module.exports = router;
