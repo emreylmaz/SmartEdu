@@ -20,6 +20,7 @@ exports.getContactPage = (req, res) => {
 }
 
 exports.sendEmail = async (req, res) => {
+  try {
   const outputMessage = `
     <p>You have a new contact request</p>
     <h3>Contact Details</h3>
@@ -37,7 +38,7 @@ exports.sendEmail = async (req, res) => {
     secure: true, // true for 465, false for other ports
     auth: {
       user: "emreyilmaz.developer@gmail.com", // gmail account
-      pass: "tunwtwowrpwieqlp", // gmail password
+      pass: "1111", // gmail password
     },
   });
 
@@ -54,7 +55,15 @@ exports.sendEmail = async (req, res) => {
 
   // Preview only available when sending through an Ethereal account
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  res.status(200).redirect('/contact')
+
+  req.flash('success', 'Your message has been sent successfully.');
+
+  res.status(200).redirect('/contact')}
+  catch (err) {
+    console.log(err);
+    req.flash('error', 'Something went wrong. Please try again.');
+    res.status(200).redirect('/contact')
+  }
 }
 
 exports.getRegisterPage = (req, res) => {

@@ -11,7 +11,21 @@
 <div id="overviews" class="section wb">
 	<div class="container">
 		<div class="row">
+
 			<div class="col-lg-9 blog-post-single">
+				<% if (flashMessages) { %>
+					<% if (flashMessages.success) { %>
+						<div class="alert alert-success">
+							<%= flashMessages.success %>
+						</div>
+
+					<% } else if (flashMessages.error) { %>
+						<div class="alert alert-danger">
+							<%= flashMessages.error %>
+						</div>
+					<% } %>
+
+				<% } %>
 				<div class="row">
 
 					<% for (let i=0; i< courses.length; i++) { %>
@@ -45,7 +59,7 @@
 					<div class="site-search-area">
 						<form method="GET" id="site-searchform" action="/courses">
 							<div>
-								<input class="input-text form-control" name="search" id="search" placeholder="Search" type="text">
+								<input class="input-text form-control" name="search" id="search-k" placeholder="Search..." type="text">
 								<button id="searchsubmit" value="Search" type="submit"></button>
 							</div>
 						</form>
